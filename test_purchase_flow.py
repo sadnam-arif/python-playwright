@@ -175,7 +175,6 @@ class PaymentPage(BasePage):
         return target_path
 
 
-@pytest.mark.parametrize("browser_name", BROWSERS)
 def test_purchase_flow(browser_name: str) -> None:
     """
     Full purchase + invoice downloading flow:
@@ -241,3 +240,4 @@ def test_purchase_flow(browser_name: str) -> None:
         context.tracing.stop(path="traces/trace.zip")
         context.close()
         browser.close()
+
