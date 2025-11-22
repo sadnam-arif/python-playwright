@@ -186,7 +186,7 @@ def test_purchase_flow(my_browser: str) -> None:
     email, password = load_credentials()
 
     with sync_playwright() as p:
-        browser_type = getattr(p, browser_name)
+        browser_type = getattr(p, my_browser)
         logger.info("Launching browser: %s", browser_name)
         browser = browser_type.launch(headless=False, slow_mo=300)
         context = browser.new_context(
@@ -238,6 +238,7 @@ def test_purchase_flow(my_browser: str) -> None:
         context.tracing.stop(path="traces/trace.zip")
         context.close()
         browser.close()
+
 
 
 
