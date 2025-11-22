@@ -22,9 +22,14 @@ jobs:
           rm -rf * || true
           rm -rf .pytest_cache || true
           rm -rf __pycache__ || true
-          rm -rf */__pycache__ || true
-
-
+          rm -rf */__pycache__ || true      
+      - name: Full workspace purge
+        run: |
+          echo "Before purge:"
+          ls -a
+          sudo rm -rf /home/runner/work/${{ github.event.repository.name }}
+          echo "After purge:"
+          ls -a
       - name: Checkout code again
         uses: actions/checkout@v4
 
