@@ -173,7 +173,7 @@ class PaymentPage(BasePage):
         return target_path
 
 
-def test_purchase_flow(browser_name: str) -> None:
+def test_purchase_flow(my_browser: str) -> None:
     """
     Full purchase + invoice downloading flow:
     1. Navigate to site
@@ -238,5 +238,6 @@ def test_purchase_flow(browser_name: str) -> None:
         context.tracing.stop(path="traces/trace.zip")
         context.close()
         browser.close()
+
 
 
