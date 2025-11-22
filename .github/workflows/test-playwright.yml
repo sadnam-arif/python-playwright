@@ -39,6 +39,10 @@ jobs:
           pip install -r requirements.txt
           python -m playwright install
           python -m playwright install-deps
+          
+      - name: Debug
+        run: pytest --collect-only -q
+
 
       - name: Run Playwright tests
         run: pytest --html=reports/report.html --self-contained-html
