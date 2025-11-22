@@ -1,4 +1,5 @@
 import json
+import os
 import logging
 from pathlib import Path
 
@@ -174,21 +175,17 @@ class PaymentPage(BasePage):
 
 
 def test_purchase_flow(my_browser: str) -> None:
-    """
-    Full purchase + invoice downloading flow:
-    1. Navigate to site
-    2. Login using fixtures/user_credentials.json
-    3. Add 2 products to the cart
-    4. Checkout & place order successfully
-    5. Verify success message + URL
-    6. Download invoice and verify the downloaded file
-    """
     email, password = load_credentials()
 
     with sync_playwright() as p:
         browser_type = getattr(p, my_browser)
-        logger.info("Launching browser: %s", my_browser)
-        browser = browser_type.launch(headless=False, slow_mo=300)
+
+        is_ci = os.getenv("CI") == "true"
+
+        browser = browser_type.launch(
+            headless=is_ci,
+            slow_mo=0 if is_ci else 300
+        )
         context = browser.new_context(
             accept_downloads=True,
             record_video_dir="videos/",
@@ -238,6 +235,7 @@ def test_purchase_flow(my_browser: str) -> None:
         context.tracing.stop(path="traces/trace.zip")
         context.close()
         browser.close()
+
 
 
 
