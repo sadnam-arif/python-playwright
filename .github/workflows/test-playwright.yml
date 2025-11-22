@@ -13,23 +13,19 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Clean workspace
-        run: |
-          rm -rf *
-      - name: Clean workspace thoroughly
-        run: |
-          git rm -r --cached . || true
-          rm -rf * || true
-          rm -rf .pytest_cache || true
-          rm -rf __pycache__ || true
-          rm -rf */__pycache__ || true      
-      - name: Full workspace purge
+      - name: Purge inner workspace safely
         run: |
           echo "Before purge:"
-          ls -a
-          sudo rm -rf /home/runner/work/${{ github.event.repository.name }}
+          ls -a /home/runner/work/${{ github.event.repository.name }}
+          
+          rm -rf /home/runner/work/${{ github.event.repository.name }}/${{ github.event.repository.name }}/*
+          rm -rf /home/runner/work/${{ github.event.repository.name }}/${{ github.event.repository.name }}/.pytest_cache
+          rm -rf /home/runner/work/${{ github.event.repository.name }}/${{ github.event.repository.name }}/__pycache__
+          rm -rf /home/runner/work/${{ github.event.repository.name }}/${{ github.event.repository.name }}/**/__pycache__
+          
           echo "After purge:"
-          ls -a
+          ls -a /home/runner/work/${{ github.event.repository.name }}
+
       - name: Checkout code again
         uses: actions/checkout@v4
 
