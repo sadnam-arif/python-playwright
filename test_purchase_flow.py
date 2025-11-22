@@ -9,8 +9,6 @@ BASE_URL = "https://automationexercise.com"
 CREDENTIALS_FILE = Path("fixtures/user_credentials.json")
 DOWNLOADS_DIR = Path("downloads")
 
-BROWSERS = ["chromium", "firefox"]
-
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s [%(levelname)s] %(message)s",
@@ -240,4 +238,5 @@ def test_purchase_flow(browser_name: str) -> None:
         context.tracing.stop(path="traces/trace.zip")
         context.close()
         browser.close()
+
 
