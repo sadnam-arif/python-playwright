@@ -2,10 +2,9 @@ import pytest
 
 BROWSERS = ["chromium", "firefox"]
 
-@pytest.fixture()
-def browser_name(request):
-    if "browser_name" in request.fixturenames:
-        return request.param
+@pytest.fixture(params=["chromium", "firefox"])
+def my_browser(request):
+    return request.param
     return None
 
 def pytest_generate_tests(metafunc):
