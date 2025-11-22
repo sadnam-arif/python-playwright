@@ -16,6 +16,14 @@ jobs:
       - name: Clean workspace
         run: |
           rm -rf *
+      - name: Clean workspace thoroughly
+        run: |
+          git rm -r --cached . || true
+          rm -rf * || true
+          rm -rf .pytest_cache || true
+          rm -rf __pycache__ || true
+          rm -rf */__pycache__ || true
+
 
       - name: Checkout code again
         uses: actions/checkout@v4
