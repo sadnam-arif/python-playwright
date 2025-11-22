@@ -25,5 +25,5 @@ jobs:
           python -m playwright install-deps
 
       - name: Run Playwright tests
-        run: pytest -s
+        run: pytest --html=reports/report.html --self-contained-html
 
