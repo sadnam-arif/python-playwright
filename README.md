@@ -1,6 +1,6 @@
 AutomationExercise UI & API Test Framework
 
-===========Overview===========
+=========== Overview ===========
 
 This repository contains an automated test framework for **AutomationExercise** ([https://automationexercise.com](https://automationexercise.com)), supporting both **UI automation using Playwright** and **API automation using Python + Requests**.
 
@@ -15,7 +15,7 @@ It includes:
 
 ---
 
-## 🧩 Project Structure
+Project Structure
 
 ```
 .
@@ -34,7 +34,7 @@ It includes:
 
 ---
 
-## 🛠️ Setup Instructions (Local)
+Setup Instructions (Local)
 
 1. Create virtual environment
 
