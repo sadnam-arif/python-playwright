@@ -13,6 +13,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Clean workspace
+        run: |
+          rm -rf *
+
+      - name: Checkout code again
+        uses: actions/checkout@v4
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
@@ -41,6 +48,3 @@ jobs:
             traces/
             videos/
             downloads/
-
-
-
